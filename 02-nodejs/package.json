@@ -1,0 +1,19 @@
+{
+  "name": "02-nodejs",
+  "version": "1.0.0",
+  "description": "Applocation Console",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AssiaTrabelsi/formation-frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AssiaTrabelsi/formation-frontend/issues"
+  },
+  "homepage": "https://github.com/AssiaTrabelsi/formation-frontend#readme"
+}
