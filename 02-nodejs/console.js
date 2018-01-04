@@ -2,13 +2,13 @@ var dataService = require('./service')
 var readline = require('readline')
 
 
-function console(dataService) {
+function AppConsole(dataService) {
     const menu =
         [
-            { libellel: 'liste de tous les presentateurs', action: listerPresentateurs },
-            { libellel: 'Top présentateurs', action: topPresentateurs },
-            { libellel: 'liste de sessions', action: listerSessions },
-            { libellel: 'Détail une sessions', action: detailSession }
+            { libelle: 'liste de tous les presentateurs', action: listerPresentateurs },
+            { libelle: 'Top présentateurs', action: topPresentateurs },
+            { libelle: 'liste de sessions', action: listerSessions },
+            { libelle: 'Détail une sessions', action: detailSession }
 
         ]
 
@@ -18,14 +18,20 @@ function console(dataService) {
     });
 
     rl.question('What do you think of Node.js? ', (answer) => {
-        // TODO: Log the answer in a database
-        console.log(`Thank you for your valuable feedback: ${answer}`);
+        menu.forEach(function (m, index) {
 
+            console.log(m)
+            console.log(index)
+        })
         rl.close();
     });
 }
 
 
+function start() {
+
+}
+AppConsole(dataService);
 function listerPresentateurs() {
     dataService.listerTousLesPresentateurs().forEach(p => p.console.log(p.firstname))
 }
