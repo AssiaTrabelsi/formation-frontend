@@ -1,5 +1,5 @@
-import { resolve } from "path";
-import { setTimeout } from "timers";
+import {resolve} from "path";
+import {setTimeout} from "timers";
 
 //let
 let favoriteCityId = "rome"
@@ -84,11 +84,11 @@ console.log(freeTrip.toString())
 // promise,set,map,arrow function
 class TripService {
     constructor() {
-
-        new Trip('paris', 'Paris', 'img/paris.jpg')
-        new Trip('nantes', 'Nantes', 'img/nanges.jpg')
-        new Trip('rio-de-janeiro', 'Rio de Janeiro', 'img/rio-de-janeiro.jpg')
-    }
+          
+        this.trips= [new Trip('paris', 'Paris', 'img/paris.jpg'), 
+        new Trip('nantes', 'Nantes', 'img/nanges.jpg'),
+        new Trip('rio-de-janeiro', 'Rio de Janeiro', 'img/rio-de-janeiro.jpg')];
+        }
 
     findByName(tripName) {
         return new Promise((resolve, reject) => {
@@ -119,23 +119,17 @@ class TripService {
 
 class PriceService {
     constructor() {
-        // TODO Map of 2 trips
-
-        let voyage = new Map();
-        voyage.set('paris', 100)
-        voyage.set('rio-de-janeiro', 800)
-        voyage.set('nantes', 'no price')
-
+        // Map of 2 trips
+        this.voyage = new Map();
+        this.voyage.set('paris', 100)
+        this.voyage.set('rio-de-janeiro', 800)
+    
     }
     findPriceByTripId(tripId) {
         return new Promise((resolve, reject) => {
 
             setTimeout(() => {
-
-                let tr = Trip.find(tripElement => {
-
-                    return tripElement.id = tripId
-                })
+               let tr= this.voyage.get(tripId)
 
                 if (tr) {
                     resolve(tr)
@@ -153,4 +147,30 @@ class PriceService {
 }
 
 let tripService = new TripService()
+let priceService= new PriceService()
+
+tripService.findByName("paris").then(resultat=>
+{
+    console.log("resultat=", resultat)
+})
+
+priceService.findPriceByTripId("paris").then(resultat=>
+{
+    console.log("resultat=", resultat)
+})
+priceService.findPriceByTripId('toulouse').then(resultat => {
+    console.log("resultat", resultat);
+})
+
+
+tripService.findByName('Nantes')
+.then(resultat => {
+    return resultat.id;
+})
+.then((id)=>{
+   new PriceService().findPriceByTripId(id).then(resultat => {
+    console.log("resultat", resultat);
+        })
+})
+
 
